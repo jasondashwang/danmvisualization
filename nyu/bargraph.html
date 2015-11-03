@@ -34,7 +34,7 @@
 	};
 	var stern = {
 		"name": "Stern",
-		"new_year":2575,
+		"new_year":2575, /* 2575 */
 		"old_year":2237
 	};
 	var tisch = {
@@ -197,7 +197,7 @@
 		.enter()
 		.append("rect")
 		.attr("class", "new");
-
+		/* data = [cas, steinhardt, stern, etc.] */
 	var barnewAttributes = barsnew
 		.attr("width", barWidth)
 		.attr("height", function (d){return ((d.new_year * 70) / 1000) - 1;}) 
