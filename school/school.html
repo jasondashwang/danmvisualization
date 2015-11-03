@@ -4,45 +4,50 @@
 	<meta charset="utf-8">
 	<script src="../d3.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
-	
-	<script type="text/javascript" src="../jquery/jquery-ui.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../jquery/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
 	<script src="boroughs.js"></script>
 	<title>School Districts in NYC</title>
-	<style type="text/css">
-	</style>
-
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  	<script>
- 		$(function() {
-	   		 $( ".radio" ).buttonset();
-		 });
- 	 </script>
+	
 </head>
 <body>
-	
-	<form>
-	  <div class="radio">
-	    <input type="radio" id="radio1" name="radio" checked="checked" data-target="total"><label for="radio1">Total</label>
-	    <input type="radio" id="radio2" name="radio" data-target="asian"><label for="radio2">Asian</label>
-	    <input type="radio" id="radio3" name="radio" data-target="female"><label for="radio3">Female</label>
-	  </div>
-	</form>
+	<div class="row">
+	<div class="large-1 columns">
+		<form>
+		  <div class="demographic">
+		    <input type="radio" class="small button secondary" id="radio1" checked name="radio" data-target="total"><label for="radio1">Total</label>
+		    <input type="radio" class="small button secondary" id="radio2" name="radio" data-target="Asian"><label for="radio2">Asian</label>
+		    <input type="radio" class="small button secondary" id="radio3" name="radio" data-target="Female"><label for="radio3">Female
+		  </div>
+		</form>
 
-	<form>
-	  <div class="radio">
-	    <input type="radio" id="radio4" name="radio" checked="checked" data-target="2001"><label for="radio4">2001</label>
-	    <input type="radio" id="radio5" name="radio"><label for="radio5" data-target="2002">2002</label>
-	    <input type="radio" id="radio6" name="radio"><label for="radio6" data-target="2003">2003</label>
-	  </div>
-	</form>
-
+		<form>
+		  <div class="year">
+		    <input type="radio" class="small button secondary" id="radio4" name="radio" checked data-target="2001"><label for="radio4">2001</label>
+		    <input type="radio" class="small button secondary" id="radio5" name="radio" data-target="2002"><label for="radio5">2002</label>
+		    <input type="radio" class="small button secondary" id="radio6" name="radio" data-target="2003"><label for="radio6">2003</label>
+		  </div>
+		</form>
+	</div>
+	<div class="svg large-11 columns">
+		
+	</div>
+	</div>
 <!-- D3JS Script -->
 <script>
-	var width = 800;
+	var demographic = "total";
+	$(".demographic input").click(function(){
+		demographic = $(".demographic input:checked" ).attr("data-target");
+	});
+	var year = "2001";
+	$(".year input").click(function(){
+		year = $(".year input:checked" ).attr("data-target");
+	});
+	$("input").click(function(){
+		$(".svg").html("");
+			var width = 800;
 	var height = 800;
 
-	var svg = d3.select("body").append("svg")
+	var svg = d3.select(".svg").append("svg")
 		.attr("height", height)
 		.attr("width", width);
 
@@ -57,9 +62,6 @@
 
 	var boroughs = svg.append("g").selectAll("path");
 
-
-	var colors = ["blue", "red", "green", "yellow", "orange"];
-
 	var shapes = boroughs
 	.data(boros.features)
 	.enter()
@@ -68,13 +70,15 @@
 		return d.properties.BoroName;
 	})
 	.style("fill", function (d) {
-		return d3.rgb(Math.floor(d.total["2001"] / 100 * 255), Math.floor(d.total["2001"] / 100 * 255), Math.floor(d.total["2001"] / 100 * 255));
+		return d3.rgb(Math.floor(d[demographic][year] / 100 * 255), Math.floor(d[demographic][year] / 100 * 255), Math.floor(d[demographic][year] / 100 * 255));
 	})
 	.attr("d", geoPath);
-</script>
 
-<!-- JQuery Script -->
-<script>
+
+	});
+ 
+
+
 </script>
 
 </body>
