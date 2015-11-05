@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="../d3.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+	<style type="text/css">
+	.axis path {
+    fill: none;
+    stroke: #777;
+    shape-rendering: crispEdges;
+	}
+	.axis text {
+	    font-family: Lato;
+	    font-size: 13px;
+	}
+
+</style>
+	<title>Film Ratings</title>
+
+</head>
+<body>
+  <div class="header">
+    <h1>IMDB Ratings</h1>
+  </div>
+
+	<div class="container">
+ 
+        <div class="jumbotron">
+ 			      <svg id="visualisation" width="1000" height="500"></svg>
+        </div>
+ 
+    </div>
+
+	<script>
+	var movies = [{'year':1970, 'average': 6.19749103942654},{'year':1971, 'average': 6.186070763500934},{'year':1972, 'average': 6.226656955571756},{'year':1973, 'average': 6.209385474860346},{'year':1974, 'average': 6.187722484562308},{'year':1975, 'average': 6.256297709923666},{'year':1976, 'average': 6.274999999999986},{'year':1977, 'average': 6.338207724034486},{'year':1978, 'average': 6.336181252161891},{'year':1979, 'average': 6.323830069697966},{'year':1980, 'average': 6.296165489404638},{'year':1981, 'average': 6.304193971166457},{'year':1982, 'average': 6.364389168765747},{'year':1983, 'average': 6.342373887240364},{'year':1984, 'average': 6.338827838827824},{'year':1985, 'average': 6.332747025349198},{'year':1986, 'average': 6.252534087985587},{'year':1987, 'average': 6.265582851637769},{'year':1988, 'average': 6.23518385003605},{'year':1989, 'average': 6.2760948905109455},{'year':1990, 'average': 6.2618181818181835},{'year':1991, 'average': 6.356659142212197},{'year':1992, 'average': 6.333880126182972},{'year':1993, 'average': 6.350274223034736},{'year':1994, 'average': 6.343090193137072},{'year':1995, 'average': 6.219494708091503},{'year':1996, 'average': 6.274454725710506},{'year':1997, 'average': 6.284401709401685},{'year':1998, 'average': 6.307459108855046},{'year':1999, 'average': 6.267384654601087},{'year':2000, 'average': 6.298351204888719},{'year':2001, 'average': 6.341652470187397},{'year':2002, 'average': 6.363515551366622},{'year':2003, 'average': 6.376521220385173},{'year':2004, 'average': 6.445922908652055},{'year':2005, 'average': 6.48559611703582},{'year':2006, 'average': 6.4766668830747145},{'year':2007, 'average': 6.46791285637439},{'year':2008, 'average': 6.461529087293923},{'year':2009, 'average': 6.48994211287985},{'year':2010, 'average': 6.541159929701239},{'year':2011, 'average': 6.579218255510521},{'year':2012, 'average': 6.6258062697338795},{'year':2013, 'average': 6.581143684401017},{'year':2014, 'average': 6.700157300157283},{'year':2015, 'average': 6.774587240787218}];
+	var tv = [{'year':1970, 'average': 7.015829746532749},{'year':1971, 'average': 7.459202755905481},{'year':1972, 'average': 7.34339063426201},{'year':1973, 'average': 7.434248927038625},{'year':1974, 'average': 7.385145084452146},{'year':1975, 'average': 7.132920110192838},{'year':1976, 'average': 7.495777351247593},{'year':1977, 'average': 7.133720930232568},{'year':1978, 'average': 7.266720691518103},{'year':1979, 'average': 7.277918502202649},{'year':1980, 'average': 7.335000000000003},{'year':1981, 'average': 7.274609375000005},{'year':1982, 'average': 7.282704402515717},{'year':1983, 'average': 7.3430084745762745},{'year':1984, 'average': 7.317043278437384},{'year':1985, 'average': 6.587305122494419},{'year':1986, 'average': 7.2924242424242705},{'year':1987, 'average': 6.711238141571385},{'year':1988, 'average': 7.638981762917934},{'year':1989, 'average': 7.344932014833102},{'year':1990, 'average': 7.275324283559592},{'year':1991, 'average': 7.167729652546418},{'year':1992, 'average': 6.282673041894365},{'year':1993, 'average': 7.319968829144723},{'year':1994, 'average': 7.45409313725493},{'year':1995, 'average': 7.715068493150661},{'year':1996, 'average': 6.5055989315800025},{'year':1997, 'average': 7.096156380408508},{'year':1998, 'average': 6.6041502265088425},{'year':1999, 'average': 7.435419890279851},{'year':2000, 'average': 7.382839595375731},{'year':2001, 'average': 7.346715941542104},{'year':2002, 'average': 7.35482669258177},{'year':2003, 'average': 7.283337801608547},{'year':2004, 'average': 7.4949828091175235},{'year':2005, 'average': 7.3021767868159655},{'year':2006, 'average': 7.256046776953797},{'year':2007, 'average': 7.466421568627436},{'year':2008, 'average': 7.535677530017257},{'year':2009, 'average': 7.450790142557154},{'year':2010, 'average': 7.62737604456823},{'year':2011, 'average': 7.713043037974682},{'year':2012, 'average': 7.6508980521123275},{'year':2013, 'average': 7.684705557854112},{'year':2014, 'average': 7.8177057826332605},{'year':2015, 'average': 7.759532446594126}];
+
+
+	var vis = d3.select("#visualisation"),
+    WIDTH = 1000,
+    HEIGHT = 500,
+    MARGINS = {
+        top: 20,
+        right: 20,
+        bottom: 20,
+        left: 50
+    };
+
+    xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([1970,2015]);
+    yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([6,8]);
+
+    xAxis = d3.svg.axis()
+    .scale(xScale);
+  
+	yAxis = d3.svg.axis()
+    .scale(yScale)
+    .orient("left");
+
+    vis.append("svg:g")
+    .attr("class","axis")
+    .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+    .call(xAxis);
+
+    vis.append("svg:g")
+    .attr("class","axis")
+    .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+    .call(yAxis);
+
+    var lineGen = d3.svg.line()
+	  .x(function(d) {
+	    return xScale(d.year);
+	  })
+	  .y(function(d) {
+	    return yScale(d.average);
+	  })
+	  .interpolate("basis");
+
+	var movie = vis.append('svg:path')
+  .attr('d', lineGen(movies))
+  .attr('stroke', 'green')
+  .attr('stroke-width', 2)
+  .attr('fill', 'none');
+
+  	var tv = vis.append('svg:path')
+  .attr('d', lineGen(tv))
+  .attr('stroke', 'blue')
+  .attr('stroke-width', 2)
+  .attr('fill', 'none');
+
+
+	</script>
+</body>
+</html>

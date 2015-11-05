@@ -6,30 +6,245 @@
 	<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
 	<script src="boroughs.js"></script>
+
+	<style type="text/css">
+
+	body {
+ 	 margin: 2rem; }
+
+	.switch-on {
+	  position: absolute;
+	  left: -55px;
+	  top: 10px;
+	  color: white;
+	  font-weight: bold;
+	  font-size: 9px; }
+
+	.switch-off {
+	  position: absolute;
+	  left: -25px;
+	  top: 10px;
+	  color: white;
+	  font-weight: bold;
+	  font-size: 9px; }
+
+	.selections{
+		width: 100%;
+	}
+
+	.choices{
+		float: left;
+		margin: 5px;
+	}
+
+	p{
+		font-size: .8em;
+	}
+	
+	.moohab{
+		border: 1px solid black;
+	}
+
+	.titler{
+		text-align: center;
+	}
+
+
+	#legend {
+	  background: -webkit-linear-gradient(left, white , red); /* For Safari 5.1 to 6.0 */
+	  background: -o-linear-gradient(right, white, red); /* For Opera 11.1 to 12.0 */
+	  background: -moz-linear-gradient(right, white, red); /* For Firefox 3.6 to 15 */
+	  background: linear-gradient(to right, white , red); /* Standard syntax */
+
+	  width: 250px;
+	  height: 50px;
+
+	  border: 1px solid black;
+	  float: left;
+	  margin-left: 5px;
+	  margin-right: 5px;
+	}
+
+	.header{
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.legend{
+		float: left;
+		margin: 8px auto;
+	}
+
+	.row{
+		clear: both;
+	}
+
+	.clearer{
+		clear: both;
+		display: block;
+		margin: 0 auto;
+		height: 55px;
+		width: 42%;
+	}
+
+	</style>
 	<title>School Districts in NYC</title>
 	
 </head>
 <body>
+	<div class="header">
+		<div><h3 class="titler">School Graduation Percentage</h3></div>
+		<div class="clearer">
+			<h5 class="legend">Higher Graduation</h5>
+			<div id="legend"></div>
+			<h5 class="legend">Lower Graduation</h5>
+		</div>
+	</div>
 	<div class="row">
-	<div class="large-1 columns">
+	<div class="medium-2 columns moohab">
 		<form>
-		  <div class="demographic">
-		    <input type="radio" class="small button secondary" id="radio1" checked name="radio" data-target="total"><label for="radio1">Total</label>
-		    <input type="radio" class="small button secondary" id="radio2" name="radio" data-target="Asian"><label for="radio2">Asian</label>
-		    <input type="radio" class="small button secondary" id="radio3" name="radio" data-target="Female"><label for="radio3">Female
+		  <div class="switch round demographic">
+		  	<p class="titler">Choose a Demographic</p>
+		  	<div class="selections">
+		  		<p class="choices">Total</p>
+			    <input type="radio" class="choices" id="radio1" name="radio" data-target="total"><label for="radio1">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+		    <div class="selections">
+		  		<p class="choices">Immigrant</p>
+			    <input type="radio" class="choices" id="radio10" name="radio" data-target="englishlearn"><label for="radio10">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+		    <div class="selections">
+		  		<p class="choices">Native</p>
+			    <input type="radio" class="choices" id="radio11" name="radio" data-target="englishproficient"><label for="radio11">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+		    <div class="selections">
+		  		<p class="choices">Special Ed</p>
+			    <input type="radio" class="choices" id="radio12" name="radio" data-target="specialed"><label for="radio12">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+		    <div class="selections">
+		  		<p class="choices">General Ed</p>
+			    <input type="radio" class="choices" id="radio15" name="radio" data-target="gened"><label for="radio15">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+		    <div class="selections">
+		    	<p class="choices">Asian</p>
+			    <input type="radio" class="choices"  id="radio2" name="radio" data-target="Asian"><label for="radio2">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+		    <div class="selections">
+		    	<p class="choices">Black</p>
+			    <input type="radio" class="choices"  id="radio16" name="radio" data-target="Black"><label for="radio16">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+		    <div class="selections">
+		  		<p class="choices">Hispanic</p>
+			    <input type="radio" class="choices" id="radio13" name="radio" data-target="Hispanic"><label for="radio13">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+			<div class="selections">
+		  		<p class="choices">White</p>
+			    <input type="radio" class="choices" id="radio14" name="radio" data-target="White"><label for="radio14">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+
+
+		    <div class="selections">
+		    	<p class="choices" >Female</p>
+			    <input type="radio" class="choices" id="radio3" name="radio" data-target="Female"><label for="radio3">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+			</div>
+
+			<div class="selections">
+		    	<p class="choices">Male</p>
+			    <input type="radio" class="choices"  id="radio17" name="radio" data-target="Male"><label for="radio17">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
 		  </div>
 		</form>
 
+
+	</div>
+	<div class="medium-8 columns svg">
+		
+	</div>
+
+	<div class="medium-2 columns moohab">
 		<form>
-		  <div class="year">
-		    <input type="radio" class="small button secondary" id="radio4" name="radio" checked data-target="2001"><label for="radio4">2001</label>
-		    <input type="radio" class="small button secondary" id="radio5" name="radio" data-target="2002"><label for="radio5">2002</label>
-		    <input type="radio" class="small button secondary" id="radio6" name="radio" data-target="2003"><label for="radio6">2003</label>
+		  <div class="switch round year">
+		  	<p class="titler">Choose a Year</p>
+		  	<div class="selections">
+		  		<p class="choices">2001</p>
+			    <input type="radio" class="choices" id="radio4" name="radio" checked data-target="2001"><label for="radio4">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+		    <div class="selections">
+		    	<p class="choices">2002</p>
+			    <input type="radio" id="radio5" class="choices" name="radio" data-target="2002"><label for="radio5">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+				</label>
+			</div>
+			<div class="selections">
+				<p class="choices">2003</p>
+			    <input type="radio" class="choices" id="radio6" name="radio" data-target="2003"><label for="radio6">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+
+
+			<div class="selections">
+		  		<p class="choices">2004</p>
+			    <input type="radio" class="choices" id="radio7" name="radio" data-target="2004"><label for="radio7">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+		    <div class="selections">
+		  		<p class="choices">2005</p>
+			    <input type="radio" class="choices" id="radio8" name="radio" data-target="2005"><label for="radio8">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+		    <div class="selections">
+		  		<p class="choices">2006</p>
+			    <input type="radio" class="choices" id="radio9" name="radio" data-target="2006"><label for="radio9">
+					<span class="switch-on">On</span>
+				    <span class="switch-off">Off</span>
+			    </label>
+		    </div>
+
 		  </div>
 		</form>
-	</div>
-	<div class="svg large-11 columns">
-		
 	</div>
 	</div>
 <!-- D3JS Script -->
@@ -44,15 +259,15 @@
 	});
 	$("input").click(function(){
 		$(".svg").html("");
-			var width = 800;
-	var height = 800;
+	var width = 650;
+	var height = 600;
 
 	var svg = d3.select(".svg").append("svg")
 		.attr("height", height)
-		.attr("width", width);
+		.attr("width", width)
 
 	var albersProjection = d3.geo.albers()
-	.scale(100000)
+	.scale(80000)
 	.rotate([74.0059, 0])
 	.center([0, 40.7127])
 	.translate([width/2, height/2]);
@@ -70,9 +285,39 @@
 		return d.properties.BoroName;
 	})
 	.style("fill", function (d) {
-		return d3.rgb(Math.floor(d[demographic][year] / 100 * 255), Math.floor(d[demographic][year] / 100 * 255), Math.floor(d[demographic][year] / 100 * 255));
+		return d3.rgb(255, Math.floor(d[demographic][year] / 95 * 255), Math.floor(d[demographic][year] / 95 * 255));
 	})
 	.attr("d", geoPath);
+
+	var brooklyn = svg.append("text")
+	.attr("x", 350)
+	.attr("y", 400)
+	.attr("fill", "black")
+	.text(boros.features[2][demographic][year] + "%");
+
+	var staten = svg.append("text")
+	.attr("x", 150)
+	.attr("y", 475)
+	.attr("fill", "black")
+	.text(boros.features[0][demographic][year] + "%");
+
+	var queens = svg.append("text")
+	.attr("x", 500)
+	.attr("y", 300)
+	.attr("fill", "black")
+	.text(boros.features[1][demographic][year] + "%");
+
+	var manhattan = svg.append("text")
+	.attr("x", 345)
+	.attr("y", 215)
+	.attr("fill", "black")
+	.text(boros.features[3][demographic][year] + "%");
+
+	var bronx = svg.append("text")
+	.attr("x", 450)
+	.attr("y", 100)
+	.attr("fill", "black")
+	.text(boros.features[4][demographic][year] + "%");
 
 
 	});

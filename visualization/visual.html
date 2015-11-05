@@ -1,0 +1,335 @@
+<html>
+	<head>
+			<meta charset="utf-8">
+	<script src="../d3.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+
+	<title>Digital Art????
+	</title>
+		<style type="text/css">
+		body {
+		font-family: sans-serif;
+		font-size: 9pt;
+		line-height: 12pt;
+		background: #ffffff;
+		color: #555555;
+	}
+	
+	.line1{
+		fill: none;
+		stroke: steelblue;
+		stroke-width: 1px;
+	}
+
+	.line2 {
+		fill: none;
+		stroke: green;
+		stroke-width: 1px;
+	}
+
+	.line3 {
+		fill: none;
+		stroke: orange;
+		stroke-width: 1px;
+	}
+
+	.line4 {
+		fill: none;
+		stroke: red;
+		stroke-width: 1px;
+	}
+
+	.line5 {
+		fill: none;
+		stroke: purple;
+		stroke-width: 1px;
+	}
+
+	.line6 {
+		fill: none;
+		stroke: yellow;
+		stroke-width: 1px;
+	}
+
+	.line7 {
+		fill: none;
+		stroke: hotpink;
+		stroke-width: 1px;
+	}
+
+	.line8 {
+		fill: none;
+		stroke: darkblue;
+		stroke-width: 1px;
+	}
+
+	.line9 {
+		fill: none;
+		stroke: sandybrown;
+		stroke-width: 1px;
+	}
+
+	.line10 {
+		fill: none;
+		stroke: indigo;
+		stroke-width: 1px;
+	}
+	 
+	.axis path, .axis line {
+		fill: none;
+		stroke: #555555;
+		shape-rendering: crispEdges;
+	} </style>
+	</head>
+	<body>
+		
+		<script>
+		 var t = -1;
+    var n = 40;
+    var duration = 750;
+
+	var data1 = initialise(); 
+	var data2 = initialise();  
+	var data3 = initialise();  
+	var data4 = initialise();
+	var data5 = initialise();
+	var data6 = initialise();
+	var data7 = initialise();
+	var data8 = initialise();
+	var data9 = initialise();
+	var data10 = initialise(); 
+			
+	function initialise()
+	{
+		var time = -1;
+		var arr = [];
+		for (var i = 0; i < n; i++)
+		{
+			var obj = {
+				time: ++time,
+				value: Math.floor(Math.random()*100)
+			};
+			arr.push(obj);
+		}	
+		t = time;
+		return arr;
+	}
+	
+	// push a new element on to the given array
+	function updateData(a)
+	{
+		var obj = {
+			time:  t,  
+			value: Math.floor(Math.random()*100)
+		};
+		a.push(obj);
+	}
+	
+    var margin = {top: 10, right: 10, bottom: 20, left: 40},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+	 
+    var x = d3.scale.linear()
+        .domain([t-n+1, t])
+        .range([0, width]);
+	 
+    var y = d3.scale.linear()
+        .domain([0, 100])
+        .range([height, 0]);
+	 
+    var line = d3.svg.line()
+		.interpolate("basis")
+        .x(function(d, i) { return x(d.time); })
+        .y(function(d, i) { return y(d.value); });
+		
+    var svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom);
+
+    var g = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		
+	// extra svg to clip the graph and x axis as they transition in and out
+    var graph = g.append("svg")
+        .attr("width", width)
+        .attr("height", height + margin.top + margin.bottom);	
+	
+    var xAxis = d3.svg.axis().scale(x).orient("bottom");
+    var axis = graph.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(x.axis=xAxis);
+	 
+    g.append("g")
+        .attr("class", "y axis")
+        .call(d3.svg.axis().scale(y).orient("left"));
+	 
+	var path1 = graph.append("g")
+		.append("path")
+		.data([data1])
+		.attr("class", "line1");
+		
+	var path2 = graph.append("g")
+		.append("path")
+		.data([data2])
+		.attr("class", "line2");
+		
+	var path3 = graph.append("g")
+		.append("path")
+		.data([data3])
+		.attr("class", "line3");
+		
+	var path4 = graph.append("g")
+		.append("path")
+		.data([data4])
+		.attr("class", "line4");
+
+	var path5 = graph.append("g")
+		.append("path")
+		.data([data5])
+		.attr("class", "line5");
+
+	var path6 = graph.append("g")
+		.append("path")
+		.data([data6])
+		.attr("class", "line6");
+
+	var path7 = graph.append("g")
+		.append("path")
+		.data([data7])
+		.attr("class", "line7");
+
+	var path8 = graph.append("g")
+		.append("path")
+		.data([data8])
+		.attr("class", "line8");
+	var path9 = graph.append("g")
+		.append("path")
+		.data([data9])
+		.attr("class", "line9");
+	var path10 = graph.append("g")
+		.append("path")
+		.data([data10])
+		.attr("class", "line10");
+	
+
+	tick();
+		
+    function tick() {
+
+		t++;
+		
+		// push
+		updateData(data1);
+		updateData(data2);
+		updateData(data3);
+		updateData(data4);
+		updateData(data5);
+		updateData(data6);
+		updateData(data7);
+		updateData(data8);
+		updateData(data9);
+		updateData(data10);
+
+
+        // update the domains
+        x.domain([t - n + 2 , t]);
+		
+        // redraw the lines
+        graph.select(".line1").attr("d", line).attr("transform", null);
+		graph.select(".line2").attr("d", line).attr("transform", null);
+		graph.select(".line3").attr("d", line).attr("transform", null);
+		graph.select(".line4").attr("d", line).attr("transform", null);
+		graph.select(".line5").attr("d", line).attr("transform", null);
+		graph.select(".line6").attr("d", line).attr("transform", null);
+		graph.select(".line7").attr("d", line).attr("transform", null);
+		graph.select(".line8").attr("d", line).attr("transform", null);
+		graph.select(".line9").attr("d", line).attr("transform", null);
+		graph.select(".line10").attr("d", line).attr("transform", null);
+
+		
+        // slide the line left
+		path1
+			.transition()
+			.duration(duration)
+            .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");
+			
+		path2
+			.transition()
+			.duration(duration)
+        .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");
+			
+		path3
+			.transition()
+			.duration(duration)
+        .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");
+		
+		path4
+			.transition()
+			.duration(duration)
+        .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");
+
+		path5
+			.transition()
+			.duration(duration)
+        .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");
+
+		path6
+			.transition()
+			.duration(duration)
+        .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");
+
+		path7
+			.transition()
+			.duration(duration)
+        .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");
+
+		path8
+			.transition()
+			.duration(duration)
+        .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");
+
+		path9
+			.transition()
+			.duration(duration)
+        .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");
+
+		path10
+			.transition()
+			.duration(duration)
+        .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");
+
+            
+		 // slide the x-axis left
+        axis.transition()
+            .duration(duration)
+            .ease("linear")
+            .call(xAxis)
+			.each("end", tick);
+
+
+        data1.shift();
+		data2.shift();
+		data3.shift();
+		data4.shift();
+		data5.shift();
+		data6.shift();
+		data7.shift();
+		data8.shift();
+		data9.shift();
+		data10.shift();
+
+		
+    }</script>
+	</body>
+</html>
