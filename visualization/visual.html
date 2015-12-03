@@ -74,6 +74,12 @@
 		stroke: indigo;
 		stroke-width: 1px;
 	}
+
+	.line11 {
+		fill: none;
+		stroke: black;
+		stroke-width: 3px;
+	}
 	 
 	.axis path, .axis line {
 		fill: none;
@@ -83,8 +89,8 @@
 	</head>
 	<body>
 		
-		<script>
-		 var t = -1;
+	<script>
+	var t = -1;
     var n = 40;
     var duration = 750;
 
@@ -98,6 +104,8 @@
 	var data8 = initialise();
 	var data9 = initialise();
 	var data10 = initialise(); 
+
+	var data11 = initialAverage();
 			
 	function initialise()
 	{
@@ -114,6 +122,21 @@
 		t = time;
 		return arr;
 	}
+
+	function initialAverage(){
+		var time = -1;
+		var arr = [];
+		for (var i = 0; i < n; i++)
+		{
+			var obj = {
+				time: ++time,
+				value: (data1[i].value + data2[i].value + data3[i].value + data4[i].value + data5[i].value + data6[i].value + data7[i].value + data8[i].value + data9[i].value + data10[i].value) / 10
+			};
+			arr.push(obj);
+		}	
+		t = time;
+		return arr;
+	}
 	
 	// push a new element on to the given array
 	function updateData(a)
@@ -121,6 +144,15 @@
 		var obj = {
 			time:  t,  
 			value: Math.floor(Math.random()*100)
+		};
+		a.push(obj);
+	}
+
+	function updateAverage(a)
+	{
+		var obj = {
+			time:  t,  
+			value: (data1[data1.length - 1].value + data2[data1.length - 1].value + data3[data1.length - 1].value + data4[data1.length - 1].value + data5[data1.length - 1].value + data6[data1.length - 1].value + data7[data1.length - 1].value + data8[data1.length - 1].value + data9[data1.length - 1].value + data10[data1.length - 1].value) / 10
 		};
 		a.push(obj);
 	}
@@ -211,6 +243,11 @@
 		.append("path")
 		.data([data10])
 		.attr("class", "line10");
+
+	var path11 = graph.append("g")
+		.append("path")
+		.data([data11])
+		.attr("class", "line11");	
 	
 
 	tick();
@@ -230,6 +267,8 @@
 		updateData(data8);
 		updateData(data9);
 		updateData(data10);
+		updateAverage(data11);
+
 
 
         // update the domains
@@ -246,6 +285,7 @@
 		graph.select(".line8").attr("d", line).attr("transform", null);
 		graph.select(".line9").attr("d", line).attr("transform", null);
 		graph.select(".line10").attr("d", line).attr("transform", null);
+		graph.select(".line11").attr("d", line).attr("transform", null);
 
 		
         // slide the line left
@@ -309,6 +349,12 @@
         .ease("linear")
 			.attr("transform", "translate(" + x(t-n+1) + ")");
 
+		path11
+			.transition()
+			.duration(duration)
+        .ease("linear")
+			.attr("transform", "translate(" + x(t-n+1) + ")");	
+
             
 		 // slide the x-axis left
         axis.transition()
@@ -328,6 +374,7 @@
 		data8.shift();
 		data9.shift();
 		data10.shift();
+		data11.shift();
 
 		
     }</script>

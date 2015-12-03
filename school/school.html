@@ -259,65 +259,65 @@
 	});
 	$("input").click(function(){
 		$(".svg").html("");
-	var width = 650;
-	var height = 600;
+		var width = 650;
+		var height = 600;
 
-	var svg = d3.select(".svg").append("svg")
-		.attr("height", height)
-		.attr("width", width)
+		var svg = d3.select(".svg").append("svg")
+			.attr("height", height)
+			.attr("width", width);
 
-	var albersProjection = d3.geo.albers()
-	.scale(80000)
-	.rotate([74.0059, 0])
-	.center([0, 40.7127])
-	.translate([width/2, height/2]);
+		var albersProjection = d3.geo.albers()
+		.scale(80000)
+		.rotate([74.0059, 0])
+		.center([0, 40.7127])
+		.translate([width/2, height/2]);
 
-	var geoPath = d3.geo.path()
-		.projection( albersProjection);
+		var geoPath = d3.geo.path()
+			.projection( albersProjection);
 
-	var boroughs = svg.append("g").selectAll("path");
+		var boroughs = svg.append("g").selectAll("path");
 
-	var shapes = boroughs
-	.data(boros.features)
-	.enter()
-	.append("path")
-	.attr("class", function (d) {
-		return d.properties.BoroName;
-	})
-	.style("fill", function (d) {
-		return d3.rgb(255, Math.floor(d[demographic][year] / 95 * 255), Math.floor(d[demographic][year] / 95 * 255));
-	})
-	.attr("d", geoPath);
+		var shapes = boroughs
+		.data(boros.features)
+		.enter()
+		.append("path")
+		.attr("class", function (d) {
+			return d.properties.BoroName;
+		})
+		.style("fill", function (d) {
+			return d3.rgb(255, Math.floor(d[demographic][year] / 95 * 255), Math.floor(d[demographic][year] / 95 * 255));
+		})
+		.attr("d", geoPath);
 
-	var brooklyn = svg.append("text")
-	.attr("x", 350)
-	.attr("y", 400)
-	.attr("fill", "black")
-	.text(boros.features[2][demographic][year] + "%");
+		var brooklyn = svg.append("text")
+		.attr("x", 350)
+		.attr("y", 400)
+		.attr("fill", "black")
+		.text(boros.features[2][demographic][year] + "%");
 
-	var staten = svg.append("text")
-	.attr("x", 150)
-	.attr("y", 475)
-	.attr("fill", "black")
-	.text(boros.features[0][demographic][year] + "%");
+		var staten = svg.append("text")
+		.attr("x", 150)
+		.attr("y", 475)
+		.attr("fill", "black")
+		.text(boros.features[0][demographic][year] + "%");
 
-	var queens = svg.append("text")
-	.attr("x", 500)
-	.attr("y", 300)
-	.attr("fill", "black")
-	.text(boros.features[1][demographic][year] + "%");
+		var queens = svg.append("text")
+		.attr("x", 500)
+		.attr("y", 300)
+		.attr("fill", "black")
+		.text(boros.features[1][demographic][year] + "%");
 
-	var manhattan = svg.append("text")
-	.attr("x", 345)
-	.attr("y", 215)
-	.attr("fill", "black")
-	.text(boros.features[3][demographic][year] + "%");
+		var manhattan = svg.append("text")
+		.attr("x", 345)
+		.attr("y", 215)
+		.attr("fill", "black")
+		.text(boros.features[3][demographic][year] + "%");
 
-	var bronx = svg.append("text")
-	.attr("x", 450)
-	.attr("y", 100)
-	.attr("fill", "black")
-	.text(boros.features[4][demographic][year] + "%");
+		var bronx = svg.append("text")
+		.attr("x", 450)
+		.attr("y", 100)
+		.attr("fill", "black")
+		.text(boros.features[4][demographic][year] + "%");
 
 
 	});
