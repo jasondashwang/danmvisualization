@@ -3,6 +3,7 @@
 <head>
 	<script type="text/javascript" src="../d3.min.js"></script>
 	<title>Testeroni</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<style type="text/css">
 	.newlabels, .oldlabels {
 	  fill: black;
@@ -18,9 +19,13 @@
 		font: 28px sans-serif;
 	}
 	</style>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <body>
-
+	<a href="../index.html">Return to home page</a>
+	<div id="svg">
+		
+	</div>
 <script type="text/javascript">
 	var cas = {
 		"name": "CAS",
@@ -34,7 +39,7 @@
 	};
 	var stern = {
 		"name": "Stern",
-		"new_year":7000, /* 2575 */
+		"new_year":2575,
 		"old_year":2237
 	};
 	var tisch = {
@@ -52,7 +57,7 @@
 	/* Initialize SVG */
 	var width = 1200;
 	var height = 760;
-	var body = d3.select("body");
+	var body = d3.select("#svg");
 	var svg = body.append("svg").attr("width", width).attr("height", height).style("border", "1px solid black");
 
 	/* Lines and Axis */
@@ -263,6 +268,266 @@
 		.attr("y", 690)
 		.text(function (d) {return d.name + " 2015";});
 	
+</script>
+
+<br/>
+<a href="javascript:toggleDiv('myCode');"><button type="button" class="btn btn-info">Show Code (There is a lot)</button></a>
+<div class="row">
+	<div id="myCode" class="col-md-6">
+
+		<pre><code>
+		var cas = {
+			"name": "CAS",
+			"new_year":7536,
+			"old_year":6402
+		};
+		var steinhardt = {
+			"name": "Steinh.",
+			"new_year":2702,
+			"old_year":2442
+		};
+		var stern = {
+			"name": "Stern",
+			"new_year":2575,
+			"old_year":2237
+		};
+		var tisch = {
+			"name": "Tisch",
+			"new_year":3508,
+			"old_year":2800
+		};
+		var gallatin = {
+			"name": "Gall.",
+			"new_year":1586,
+			"old_year":1037
+		};
+		var data =[cas, steinhardt, stern, tisch, gallatin];
+
+		/* Initialize SVG */
+		var width = 1200;
+		var height = 760;
+		var body = d3.select("#svg");
+		var svg = body.append("svg").attr("width", width).attr("height", height).style("border", "1px solid black");
+
+		/* Lines and Axis */
+
+		var yaxis = svg.append("line")
+			.attr("x1", 100)
+			.attr("y1", 100)
+			.attr("x2", 100)
+			.attr("y2", 660)
+			.attr("stroke-width", 2)
+			.attr("stroke","black");
+
+		var xaxis = svg.append("line")
+			.attr("x1", 100)
+			.attr("y1", 660)
+			.attr("x2", 1100)
+			.attr("y2", 660)
+			.attr("stroke-width", 2)
+			.attr("stroke","black");
+
+		var title = svg.append("text")
+			.attr("x", 350)
+			.attr("y", 50)
+			.attr("class", "title")
+			.text("NYU Student Populations from 2002 to 2015");
+
+		var yaxis0word = svg.append("text")
+			.attr("x", 50)
+			.attr("y", 665)
+			.attr("fill", "black")
+			.text("0");	
+
+		var yaxis1000line = svg.append("line")
+			.attr("x1", 100)
+			.attr("y1", 590)
+			.attr("x2", 1100)
+			.attr("y2", 590)
+			.attr("stroke-width", 0.2)
+			.attr("stroke","gray");
+		var yaxis1000word = svg.append("text")
+			.attr("x", 50)
+			.attr("y", 595)
+			.attr("fill", "black")
+			.text("1000");
+
+		var yaxis2000line = svg.append("line")
+			.attr("x1", 100)
+			.attr("y1", 520)
+			.attr("x2", 1100)
+			.attr("y2", 520)
+			.attr("stroke-width", 0.2)
+			.attr("stroke","gray");
+		var yaxis2000word = svg.append("text")
+			.attr("x", 50)
+			.attr("y", 525)
+			.attr("fill", "black")
+			.text("2000");
+
+		var yaxis3000line = svg.append("line")
+			.attr("x1", 100)
+			.attr("y1", 450)
+			.attr("x2", 1100)
+			.attr("y2", 450)
+			.attr("stroke-width", 0.2)
+			.attr("stroke","gray");
+		var yaxis3000word = svg.append("text")
+			.attr("x", 50)
+			.attr("y", 455)
+			.attr("fill", "black")
+			.text("3000");	
+
+		var yaxis4000line = svg.append("line")
+			.attr("x1", 100)
+			.attr("y1", 380)
+			.attr("x2", 1100)
+			.attr("y2", 380)
+			.attr("stroke-width", 0.2)
+			.attr("stroke","gray");
+		var yaxis4000word = svg.append("text")
+			.attr("x", 50)
+			.attr("y", 385)
+			.attr("fill", "black")
+			.text("4000");
+				
+		var yaxis5000line = svg.append("line")
+			.attr("x1", 100)
+			.attr("y1", 310)
+			.attr("x2", 1100)
+			.attr("y2", 310)
+			.attr("stroke-width", 0.2)
+			.attr("stroke","gray");
+		var yaxis5000word = svg.append("text")
+			.attr("x", 50)
+			.attr("y", 315)
+			.attr("fill", "black")
+			.text("5000");	
+
+		var yaxis6000line = svg.append("line")
+			.attr("x1", 100)
+			.attr("y1", 240)
+			.attr("x2", 1100)
+			.attr("y2", 240)
+			.attr("stroke-width", 0.2)
+			.attr("stroke","gray");
+		var yaxis6000word = svg.append("text")
+			.attr("x", 50)
+			.attr("y", 245)
+			.attr("fill", "black")
+			.text("6000");	
+
+		var yaxis7000line = svg.append("line")
+			.attr("x1", 100)
+			.attr("y1", 170)
+			.attr("x2", 1100)
+			.attr("y2", 170)
+			.attr("stroke-width", 0.2)
+			.attr("stroke","gray");
+		var yaxis7000word = svg.append("text")
+			.attr("x", 50)
+			.attr("y", 175)
+			.attr("fill", "black")
+			.text("7000");	
+
+		var yaxis7000line = svg.append("line")
+			.attr("x1", 100)
+			.attr("y1", 100)
+			.attr("x2", 1100)
+			.attr("y2", 100)
+			.attr("stroke-width", 0.2)
+			.attr("stroke","gray");	
+		var yaxis8000word = svg.append("text")
+			.attr("x", 50)
+			.attr("y", 105)
+			.attr("fill", "black")
+			.text("8000");	
+
+		/* Bars */
+		var barWidth = 80;
+
+		var barsnew = svg.selectAll("rect")
+			.data(data)
+			.enter()
+			.append("rect")
+			.attr("class", "new");
+			/* data = [cas, steinhardt, stern, etc.] */
+		var barnewAttributes = barsnew
+			.attr("width", barWidth)
+			.attr("height", function (d){return ((d.new_year * 70) / 1000) - 1;}) 
+			.attr("x", function (d, i){return 101 + (i * 210);})
+			.attr("y", function (d){return 660 - ((d.new_year * 70) / 1000);})
+			.attr("fill","steelblue");
+			
+		var barsold = svg.selectAll(".old")
+			.data(data)
+			.enter()
+			.append("rect")
+			.attr("class", "old");
+
+
+		var baroldAttributes = barsold
+			.attr("width", barWidth)
+			.attr("height", function (d){return ((d.old_year * 70) / 1000) - 1;}) 
+			.attr("x", function (d, i){return 181 + (i * 210);})
+			.attr("y", function (d){return 660 - ((d.old_year * 70) / 1000);})
+			.attr("fill","pink");
+
+		var newlabels = svg.selectAll(".newlabels")
+			.data(data)
+			.enter()
+			.append("text")
+			.attr("class", "newlabels");
+
+		var newlabelsAttributes = newlabels
+			.attr("x", function (d, i){return 120 + (i * 210);})
+			.attr("y", function (d){return 650 - ((d.new_year * 70) / 1000);})
+			.text(function (d) {return d.new_year;});
+
+		var oldlabels = svg.selectAll(".oldlabels")
+			.data(data)
+			.enter()
+			.append("text")
+			.attr("class", "oldlabels");
+
+		var oldlabelsAttributes = oldlabels
+			.attr("x", function (d, i){return 200 + (i * 210);})
+			.attr("y", function (d){return 650 - ((d.old_year * 70) / 1000);})
+			.text(function (d) {return d.old_year;});
+
+		var oldaxislabels = svg.selectAll(".oldaxislabels")
+			.data(data)
+			.enter()
+			.append("text")
+			.attr("class", "oldaxislabels");
+
+		var oldaxislabelsAttributes = oldaxislabels
+			.attr("x", function (d, i){return 185 + (i * 210);})
+			.attr("y", 690)
+			.text(function (d) {return d.name + " 2002";});
+
+		var newaxislabels = svg.selectAll(".newaxislabels")
+			.data(data)
+			.enter()
+			.append("text")
+			.attr("class", "newaxislabels");
+
+		var newaxislabelsAttributes = newaxislabels
+			.attr("x", function (d, i){return 105 + (i * 210);})
+			.attr("y", 690)
+			.text(function (d) {return d.name + " 2015";});
+		</code></pre>
+	</div>
+
+	<div class="col-md-6">
+		<p>As you can see by the source code, this data visualization was made with static numbers, which make it completely unusable by others and simple inefficient. However, this very first attempt did provide me the insight into learning how to work the chaining of methods as well as binding the dataset elements into the SVG.</p>
+       <p>Dataset was self-made from New York University's Public Common Data Set.</p>
+	</div>
+</div>
+<script type="text/javascript">
+	function toggleDiv(divId) {
+	   $("#"+divId).toggle();
+	}
 </script>
 </body>
 </html>

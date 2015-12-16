@@ -4,6 +4,8 @@
 	<meta charset="utf-8">
 	<script src="../d3.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
 	<style type="text/css">
 	.axis path {
     fill: none;
@@ -15,13 +17,16 @@
 	    font-size: 13px;
 	}
 
+
+
 </style>
 	<title>Film Ratings</title>
 
 </head>
 <body>
+<a href="../index.html">Return to home page</a>
   <div class="header">
-    <h1>IMDB Ratings</h1>
+    <h1 class="center">IMDB Ratings</h1>
   </div>
 
 	<div class="container">
@@ -90,5 +95,76 @@
 
 
 	</script>
+
+  <br/>
+    <a href="javascript:toggleDiv('myCode');"><button type="button" class="btn btn-info">Show Code (There is a lot)</button></a>
+<div class="row">
+  <div id="myCode" class="col-md-6">
+
+    <pre><code>
+        var vis = d3.select("#visualisation"),
+        WIDTH = 1000,
+        HEIGHT = 500,
+        MARGINS = {
+            top: 20,
+            right: 20,
+            bottom: 20,
+            left: 50
+        };
+
+        xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([1970,2015]);
+        yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([6,8]);
+
+        xAxis = d3.svg.axis()
+        .scale(xScale);
+      
+        yAxis = d3.svg.axis()
+          .scale(yScale)
+          .orient("left");
+
+          vis.append("svg:g")
+          .attr("class","axis")
+          .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+          .call(xAxis);
+
+          vis.append("svg:g")
+          .attr("class","axis")
+          .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+          .call(yAxis);
+
+          var lineGen = d3.svg.line()
+          .x(function(d) {
+            return xScale(d.year);
+          })
+          .y(function(d) {
+            return yScale(d.average);
+          })
+          .interpolate("basis");
+
+        var movie = vis.append('svg:path')
+        .attr('d', lineGen(movies))
+        .attr('stroke', 'green')
+        .attr('stroke-width', 2)
+        .attr('fill', 'none');
+
+          var tv = vis.append('svg:path')
+        .attr('d', lineGen(tv))
+        .attr('stroke', 'blue')
+        .attr('stroke-width', 2)
+        .attr('fill', 'none');
+    </code></pre>
+  </div>
+    <div class="col-md-6">
+       
+       <p>Looking a lot cleaner than before by using some of d3js's built-in methods such as .axis() and using its linear scale method. The real challenge was obtaining and transforming the data rather than the visualization itself; however, given that this was my first line-graph, I was quite plesantly surprised with the result using some online resources. Let's be honest though, these visualizations are still able to be done in something like Microsoft Excel.</p>
+    <p>Dataset was scrubbed and turned into JSON format from IMDB's database; by the way, cleaning that was a nightmare...</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+  function toggleDiv(divId) {
+     $("#"+divId).toggle();
+  }
+</script>
 </body>
 </html>

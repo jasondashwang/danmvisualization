@@ -1,0 +1,15 @@
+ul{
+	list-style-type: none;
+}
+
+.center{
+	text-align: center;
+}
+
+.divcenter{
+	margin: 0 auto;
+}
+
+#myCode{
+    display: none;
+ }

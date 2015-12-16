@@ -5,10 +5,17 @@
 	<script src="../d3.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
+
 	<script src="boroughs.js"></script>
 
 	<style type="text/css">
-
+	.code-container {
+	    margin: 10px 0px;
+	    padding: 5px;
+	    overflow-x: auto;
+	    line-height: 1.3rem;
+	    font-weight: normal;
+	}
 	body {
  	 margin: 2rem; }
 
@@ -92,8 +99,11 @@
 	
 </head>
 <body>
+	<a href="../index.html">Return to home page</a>
 	<div class="header">
-		<div><h3 class="titler">School Graduation Percentage</h3></div>
+		<div><h3 class="titler">School Graduation Percentage</h3>
+		<p class="titler">Dataset provided by NYC Opendata</p>
+		</div>
 		<div class="clearer">
 			<h5 class="legend">Higher Graduation</h5>
 			<div id="legend"></div>
@@ -321,10 +331,8 @@
 
 
 	});
- 
-
-
 </script>
-
+<br/>
+<p>Finally, an interactive data visualization that is also decently useful (ignore the 'historical' dataset. Not only are we getting a tad bit more advanced with using maps and GeoJSON's now, but we added some interactivity for the user to go along with it, despite the very inefficient and non-sensical use of JQuery.</p>
 </body>
 </html>

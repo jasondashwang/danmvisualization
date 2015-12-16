@@ -3,11 +3,12 @@
 			<meta charset="utf-8">
 	<script src="../d3.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
-
+	  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ 	 <link rel="stylesheet" type="text/css" href="../css/style.css">
 	<title>Digital Art????
 	</title>
 		<style type="text/css">
-		body {
+		#svg {
 		font-family: sans-serif;
 		font-size: 9pt;
 		line-height: 12pt;
@@ -88,7 +89,10 @@
 	} </style>
 	</head>
 	<body>
-		
+	<a href="../index.html">Return to home page</a>
+	<h1>Random Number Visualizer</h1>
+	<p>The <strong>BLACK</strong> Line is the average of the instances in time</p>
+	<div id="svg"></div>
 	<script>
 	var t = -1;
     var n = 40;
@@ -174,7 +178,7 @@
         .x(function(d, i) { return x(d.time); })
         .y(function(d, i) { return y(d.value); });
 		
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#svg").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom);
 
